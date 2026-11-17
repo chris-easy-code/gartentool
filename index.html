@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gartentool</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header><h1>Gartentool</h1></header>
+  <nav id="nav" aria-label="Ansichten">
+    <button data-view="overview">Übersicht</button>
+    <button data-view="beds">Beete</button>
+    <button data-view="plan">Beetplan</button>
+    <button data-view="calendar">Kalender</button>
+    <button data-view="harvest">Ernte</button>
+    <button data-view="data">Daten</button>
+  </nav>
+  <main>
+    <div id="view-overview" class="view">
+      <section id="weather-section">
+        <h2>Wetter</h2>
+        <form id="zip-form">
+          <label for="zip" class="sr-only">Postleitzahl</label>
+          <input id="zip" name="zip" placeholder="Postleitzahl, z. B. 80331" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" required autocomplete="postal-code">
+          <button type="submit">Standort setzen</button>
+        </form>
+        <p id="zip-error" class="error" hidden></p>
+        <div id="weather"><p class="muted">Gib deine Postleitzahl ein, um das Wetter zu sehen.</p></div>
+      </section>
+      <section>
+        <h2>Warnungen</h2>
+        <ul id="warnings"></ul>
+        <p id="no-warnings" class="muted" hidden>Keine Frost- oder Hitzewarnung für die nächsten 3 Tage.</p>
+      </section>
+      <section>
+        <h2>Gießerinnerungen</h2>
+        <ul id="reminders"></ul>
+        <p id="no-reminders" class="muted" hidden>Heute ist nichts zu gießen.</p>
+      </section>
+    </div>
+    <div id="view-beds" class="view" hidden>
+      <h2>Meine Beete</h2>
+      <form id="bed-form">
+        <label for="bed-name" class="sr-only">Name des Beets</label>
+        <input id="bed-name" name="name" placeholder="Neues Beet, z. B. Kräuterbeet" maxlength="60" required autocomplete="off">
+        <label class="unit">Breite <input id="bed-width" type="number" min="10" max="5000" value="100" required> cm</label>
+        <label class="unit">Länge <input id="bed-length" type="number" min="10" max="5000" value="200" required> cm</label>
+        <select id="bed-sun" aria-label="Sonnenlage">
+          <option value="sonnig">sonnig</option>
+          <option value="halbschattig">halbschattig</option>
+          <option value="schattig">schattig</option>
+        </select>
+        <button type="submit">Beet anlegen</button>
+      </form>
+      <p id="empty" hidden>Noch keine Beete. Lege oben dein erstes Beet an.</p>
+      <ul id="bed-list"></ul>
+    </div>
+    <div id="view-plan" class="view" hidden></div>
+    <div id="view-calendar" class="view" hidden></div>
+    <div id="view-harvest" class="view" hidden></div>
+    <div id="view-data" class="view" hidden></div>
+  </main>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
